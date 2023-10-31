@@ -2,6 +2,7 @@ package com.example.myapplication.html
 
 import java.lang.StringBuilder
 
+// 加载html标签
 fun html(block: Html.() -> Unit): Html {
     val html = Html()
     html.block()
@@ -10,6 +11,7 @@ fun html(block: Html.() -> Unit): Html {
 
 // <html>标签
 class Html() : BaseElement("html") {
+    // 加载head标签
     fun head(block: Head.() -> Unit): Head {
         val head = Head()
         head.block()
@@ -17,6 +19,7 @@ class Html() : BaseElement("html") {
         return head
     }
 
+    //加载body标签
     fun body(block: Body.() -> Unit): Body {
         val body = Body()
         body.block()
@@ -40,6 +43,7 @@ class Title(content: String) : BaseElement("title", content)
 
 // <body>标签
 class Body : BaseElement("body") {
+    // 加载h1标签
     fun h1(block: () -> String): H1 {
         val content = block()
         val h1 = H1(content)
@@ -47,6 +51,7 @@ class Body : BaseElement("body") {
         return h1
     }
 
+    // 加载p标签
     fun p(block: () -> String): P {
         val content = block()
         val p = P(content)
@@ -54,6 +59,7 @@ class Body : BaseElement("body") {
         return p
     }
 
+    // 加载a标签
     fun a(href: String = "", block: () -> String): A {
         val content = block()
         val a = A(content).apply {
@@ -63,6 +69,7 @@ class Body : BaseElement("body") {
         return a
     }
 
+    // 加载img标签
     fun img(src: String = "", alt: String = ""): Img {
         val img = Img().apply {
             this.src = src

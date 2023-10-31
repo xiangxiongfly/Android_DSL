@@ -1,9 +1,11 @@
 package com.example.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.webkit.WebView
+import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.html.html
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -11,12 +13,15 @@ import java.io.OutputStream
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val webView: WebView = findViewById(R.id.webView)
+        val viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
         val htmlStr = getHtmlStr()
         Log.e("TAG", htmlStr)
-        webView.loadData(htmlStr, "text/html", "UTF-8")
+        viewBinding.webView.loadData(htmlStr, "text/html", "UTF-8")
+        viewBinding.btnTwo.setOnClickListener {
+            startActivity(Intent(this, TwoActivity::class.java))
+        }
     }
 
     private fun getHtmlStr(): String {
